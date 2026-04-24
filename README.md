@@ -16,7 +16,7 @@ DADN-252/
 │   ├── features/
 │   │   ├── baseline.py              # TSFRESH / TSFEL extraction
 │   │   └── custom.py                # Feature engineering thủ công
-│   └── util.py                      # Các bước giống nhau giữa 2 pipeline: load_data / normalize_features / apply_smote
+│   └── util.py                      # load_data / normalize_features / apply_smote
 ├── .gitignore
 ├── README.md
 ├── requirements.txt
@@ -27,3 +27,17 @@ DADN-252/
 ```bash
 pip install tsfresh tsfel xgboost lightgbm imbalanced-learn scikit-learn pandas numpy
 ```
+## Cách sử dụng
+Tải và đặt file north.csv vào data/raw, chạy ```python src/data/preprocessing.py --raw_path data/raw/north.csv```
+chạy file run.py để thực hiện feature extraction và đánh giá
+```bash
+python run.py --mode [baseline|custom|all] [options]
+```
+### 📋 Các tham số chính
+
+| Tham số | Lựa chọn | Mặc định | Mô tả |
+|:--- |:--- |:--- |:--- |
+| `--mode` | `baseline`, `custom`, `all` | **Bắt buộc** | Chọn pipeline để thực thi. |
+| `--extractor` | `tsfresh`, `tsfel`, `both` | `both` | Công cụ trích xuất đặc trưng (chỉ dành cho Baseline). |
+| `--data_dir` | (Đường dẫn) | `None` | Thư mục chứa dữ liệu đầu vào (df_train, y_train...). Chỉ dùng khi đặt dữ liệu ở thư mục khác.|
+| `--output` | (Tên file .csv) | `results.csv` | Tên file lưu kết quả tổng hợp sau khi chạy. |
