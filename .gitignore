@@ -16,7 +16,8 @@ sdist/
 var/
 *.egg-info/
 
-data/
+data/processed/
+data/raw/
 !data/.gitkeep
 
 .ipynb_checkpoints
