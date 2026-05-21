@@ -28,8 +28,9 @@ DADN-252/
 pip install tsfresh tsfel xgboost lightgbm imbalanced-learn scikit-learn pandas numpy
 ```
 ## Cách sử dụng
-Tải và đặt file north.csv vào data/raw, chạy ```python src/data/preprocessing.py --raw_path data/raw/north.csv```
-chạy file run.py để thực hiện feature extraction và đánh giá
+Chạy notebook [S252]_DADN_EDA_&_Preprocessing.ipynb để tải dữ liệu, EDA và tiền xử lý chúng.
+
+Chạy file run.py để thực hiện feature extraction và đánh giá
 ```bash
 python run.py --mode [baseline|custom|all] [options]
 ```
