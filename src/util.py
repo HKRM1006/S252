@@ -5,6 +5,7 @@ from imblearn.over_sampling import SMOTE
 
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data', 'processed')
+RAW_DIR = os.path.join(os.path.dirname(__file__), '..', 'data', 'raw')
 
 
 # ==============================================================================

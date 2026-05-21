@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from src.util import DATA_DIR
+from src.util import DATA_DIR, RAW_DIR
 
 # ==============================================================================
 # CONSTANTS
@@ -116,12 +116,19 @@ def normalize(df_train: pd.DataFrame, df_test: pd.DataFrame):
 # PIPELINE CHÍNH
 # ==============================================================================
 def run_preprocessing(
-    raw_path: str,
+    raw_path: str = RAW_DIR + "/north.csv",
     station_code: str  = 'A101',
     percent_to_keep: float = 0.2,
     test_size: float   = 0.2,
     out_dir: str       = DATA_DIR,
 ):
+    if not os.path.exists(raw_path):
+        raise FileNotFoundError(
+            f"\n [LỖI ĐỒNG BỘ DATA] Không tìm thấy file dữ liệu gốc tại: '{raw_path}'\n"
+            f" Nguyên nhân: Có thể bạn nhập sai đường dẫn ở lệnh --raw_path, hoặc chưa download dữ liệu về trước đó.\n"
+            f"Cách sửa: Vui lòng chạy 'python download_data.py' để tải dữ liệu về đúng kho, "
+            f"hoặc kiểm tra lại tham số truyền vào!"
+        )
     os.makedirs(out_dir, exist_ok=True)
     df = load_raw(raw_path, station_code=station_code, percent_to_keep=percent_to_keep)
     df = cleanse(df)
@@ -142,7 +149,7 @@ def run_preprocessing(
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Preprocessing pipeline – lưu CSV vào data/')
-    parser.add_argument('--raw_path', required=True, help='Đường dẫn tới file CSV gốc (north.csv)')
+    parser.add_argument('--raw_path', default=RAW_DIR + "/north.csv", help='Đường dẫn tới file CSV gốc (north.csv)')
     parser.add_argument('--station',  default='A101',  help='Mã trạm (default: A101)')
     parser.add_argument('--keep',     type=float, default=0.2, help='Tỉ lệ dữ liệu giữ lại (default: 0.2)')
     parser.add_argument('--test_size',type=float, default=0.2, help='Tỉ lệ test split (default: 0.2)')
