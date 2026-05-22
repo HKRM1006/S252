@@ -28,7 +28,17 @@ DADN-252/
 pip install tsfresh tsfel xgboost lightgbm imbalanced-learn scikit-learn pandas numpy
 ```
 ## Cách sử dụng
-Chạy notebook [S252]_DADN_EDA_&_Preprocessing.ipynb để tải dữ liệu, EDA và tiền xử lý chúng.
+Tải dữ liệu từ Kaggle về thư mục data/raw/
+```bash
+%run src/data/download_data.py
+```
+
+Tiền xử lý dữ liệu và lưu vào data/processed/. Trong ví dụ, nhóm đang lọc trạm A101 và giữ 20% dữ liệu có thời gian gần nhất.
+```bash
+%run src/data/preprocessing.py --station A101 --keep 0.2
+```
+
+Chạy notebook [S252]_DADN_EDA_&_Preprocessing.ipynb để thực hiện EDA.
 
 Chạy file run.py để thực hiện feature extraction và đánh giá
 ```bash
