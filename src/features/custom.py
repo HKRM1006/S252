@@ -313,6 +313,13 @@ def custom_pipeline(df_train: pd.DataFrame, df_test: pd.DataFrame, y_train: pd.S
         K=num_features
     )
 
+    # --- Print Selected Features ---
+    print(f"\n>>> TOP {num_features} FEATURES SELECTED BY mRMR:")
+    for idx, feat in enumerate(selected_features, 1):
+        print(f"  {idx:02d}. {feat}")
+    print("-" * 40)
+    # -----------------------------------
+
     X_train_mrmr = X_train_feat[selected_features]
     X_test_mrmr = X_test_feat[selected_features]
     

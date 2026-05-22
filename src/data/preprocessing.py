@@ -89,7 +89,9 @@ def interpolate_data(df: pd.DataFrame) -> pd.DataFrame:
     df_clean.dropna(subset=numeric_cols, inplace=True)
     
     # Logic tạo biến Rain cho bài toán dự báo t+1
-    df_clean['Rain'] = (df_clean['Precipitation'].shift(-1) > 0).astype(int)
+    # df_clean['Rain'] = (df_clean['Precipitation'].shift(-1) > 0).astype(int)
+    # df_clean = df_clean.iloc[:-1].copy()
+    df_clean['Rain'] = (df_clean['Precipitation'] > 0).astype(int)
     df_clean = df_clean.iloc[:-1].copy()
 
     print(f"[cleanse] Sau khi xử lý dữ liệu thiếu: {df_clean.shape}")
