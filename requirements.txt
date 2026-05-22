@@ -10,3 +10,4 @@ statsmodels==0.14.6
 kagglehub==1.0.0
 matplotlib
 seaborn
+mrmr-selection

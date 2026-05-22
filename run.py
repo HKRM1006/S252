@@ -1,7 +1,7 @@
 import argparse
 import os
 import pandas as pd
-#from src.features.custom import run_custom
+from src.features.custom import run_custom
 from src.features.baseline import run_baseline
 def main():
     parser = argparse.ArgumentParser(
@@ -43,9 +43,9 @@ def main():
             all_results.append(df)
 
     # ── CUSTOM ──────────────────────────────────────────────────────────────
-    # if args.mode in ('custom', 'all'):
-    #     df_custom = run_custom(data_dir=args.data_dir)
-    #     all_results.append(df_custom)
+    if args.mode in ('custom', 'all'):
+        df_custom = run_custom(data_dir=args.data_dir)
+        all_results.append(df_custom)
 
     # ── TỔNG HỢP & LƯU ─────────────────────────────────────────────────────
     if all_results:

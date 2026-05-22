@@ -125,7 +125,7 @@ def normalize(df_train: pd.DataFrame, df_test: pd.DataFrame):
 # PIPELINE CHÍNH
 # ==============================================================================
 def run_preprocessing(
-    raw_path: str,
+    raw_path: str = RAW_DIR + "/north.csv",
     station_code: str  = 'A101',
     percent_to_keep: float = 0.2,
     test_size: float   = 0.2,
